@@ -19,6 +19,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin") // Jackson extensions for Kotlin for working with JSON
     implementation("org.jetbrains.kotlin:kotlin-reflect") // Kotlin reflection library, required for working with Spring
     implementation("com.itextpdf:itext7-core:7.2.5")
+    implementation("org.apache.poi:poi-ooxml:5.2.3")
     implementation ("org.projectlombok:lombok:1.18.30")
     runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
