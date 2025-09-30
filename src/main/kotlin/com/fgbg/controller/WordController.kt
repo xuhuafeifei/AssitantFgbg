@@ -1,8 +1,6 @@
 package com.fgbg.com.fgbg.controller
 
-import com.fgbg.com.fgbg.service.PdfService
-import com.fgbg.common.GlobalExceptionHandler
-import lombok.extern.slf4j.Slf4j
+import com.fgbg.com.fgbg.service.WordService
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -13,44 +11,44 @@ import org.springframework.web.multipart.MultipartFile
 import javax.annotation.Resource
 
 @RestController
-class PdfController {
+class WordController {
 
     companion object {
-        private val log = LoggerFactory.getLogger(PdfController::class.java)
+        private val log = LoggerFactory.getLogger(WordController::class.java)
     }
 
     @Resource
-    private lateinit var pdfService: PdfService
+    private lateinit var wordService: WordService
 
-    @PostMapping("/merge")
+    @PostMapping("/word/merge")
     fun merge(
         @RequestPart("preFile") preFile: MultipartFile,
         @RequestPart("postFile") postFile: MultipartFile
     ): ResponseEntity<org.springframework.core.io.Resource> {
-        log.info("merge")
-        val responseEntity = pdfService.merge(preFile, postFile)
+        log.info("word merge")
+        val responseEntity = wordService.merge(preFile, postFile)
         return responseEntity
     }
 
-    @PostMapping("/cutFor")
+    @PostMapping("/word/cutFor")
     fun cutFor(
         @RequestPart("file") file: MultipartFile,
         @RequestParam("startPage") startPage: Int,
         @RequestParam("endPage") endPage: Int
     ): ResponseEntity<org.springframework.core.io.Resource> {
-        log.info("cutFor")
-        val responseEntity = pdfService.cutFor(file, startPage, endPage)
+        log.info("word cutFor")
+        val responseEntity = wordService.cutFor(file, startPage, endPage)
         return responseEntity
     }
 
-    @PostMapping("/cutWithout")
+    @PostMapping("/word/cutWithout")
     fun cutWithout(
         @RequestPart("file") file: MultipartFile,
         @RequestParam("startPage") startPage: Int,
         @RequestParam("endPage") endPage: Int
     ): ResponseEntity<org.springframework.core.io.Resource> {
-        log.info("cutWithout")
-        val responseEntity = pdfService.cutWithout(file, startPage, endPage)
+        log.info("word cutWithout")
+        val responseEntity = wordService.cutWithout(file, startPage, endPage)
         return responseEntity
     }
 }
